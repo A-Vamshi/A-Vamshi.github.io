@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Vamshi</title>
+          <link rel="stylesheet" href="style.css">
+          <script src="https://kit.fontawesome.com/ad39a2357f.js" crossorigin="anonymous"></script>
+     </head>
+     <body>
+          <div id="header">
+               <div class="container">
+                    <nav>
+                         <img src="images/3.png" class="logo">
+                         <ul id="#sidemenu">
+                              <li><a href="#header">Home</a></li>
+                              <li><a href="#about">About</a></li>
+                              <li><a href="#contact">Contact</a></li>
+                              <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                         </ul>
+                         <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+                    </nav>
+                    <div class="header-text">
+                         <p>Student</p>
+                         <h1>Hi, I'm <span >Vamshi</span> <br> From India</h1>
+                    </div>
+               </div>
+          </div>
+          <!-- -------about------ -->
+          <div id="about">
+               <div class="container">
+                    <div class="row">
+                         <div class="about-col1">
+                              <img src="images/6.jpg" id="about-img">
+                         </div>
+                         <div class="about-col2">
+                              <h1 class="sub-title">About me</h1>
+                              <p>  I'm a college student passionate about continuous learning.
+                                   From coding to web3, I'm expanding my skills beyond the classroom.
+                                   This space is my digital portfolio, showcasing my academic journey and diverse projects.
+                                   Join me as I turn challenges into opportunities and embrace a dynamic future.
+                              </p>
+                              <div class="tab-titles">
+                                   <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                                   <p class="tab-links" onclick="opentab('languages')">Languages</p>
+                                   <p class="tab-links" onclick="opentab('education')">Education</p> 
+                              </div>
+                              <div class="tab-contents active-tab" id="skills">
+                                   <ul>
+                                        <li><span>Web Development</span><br>Web app development</li>
+                                        <li><span>App Development</span><br>Building android/iOS apps</li>
+                                        <li><span>Machine Learning</span><br>Building ML models</li>
+                                   </ul>
+                              </div>
+                              <div class="tab-contents" id="languages">
+                                   <ul>
+                                        <li><span>Java</span><br></li>
+                                        <li><span>Python</span><br></li>
+                                        <li><span>C</span><br></li>
+                                        <li><span>C++</span><br></li>
+                                        <li><span>Ruby</span><br></li>
+                                   </ul>
+                              </div>
+                              <div class="tab-contents" id="education">
+                                   <ul>
+                                        <li><span>2020</span><br>St. Alphonsus High School</li>
+                                        <li><span>2022</span><br>PJC</li>
+                                        <li><span>2026</span><br>MREC</li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <!-- -------contact------ -->
+          <div id="contact">
+               <div class="container">
+                    <div class="row">
+                         <div class="contact-left">
+                              <h1 class="sub-title">Contact Me</h1>
+                              <p> <i class="fa-solid fa-paper-plane"></i>  vamshi.edustudy@gmail.com</p>
+                              <p> <i class="fa-solid fa-phone"></i> +91 70132 14227</p>
+                              <div class="social-icons">
+                                   <a href="https://www.instagram.com/vamshi_kai/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                   <a href="https://www.linkedin.com/in/a-vamshi" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                   <a href="https://github.com/A-Vamshi" target="_blank"><i class="fa-brands fa-github"></i></a>
+                              </div>
+                         </div>
+                         <div class="contact-right">
+                              <form name="submit-to-google-sheet">
+                                   <input type="text" name="Name" placeholder="Your name" required>
+                                   <input type="email" name="E-mail" placeholder="Your email" required>
+                                   <textarea name="Message" rows="6" placeholder="Your message"></textarea>
+                                   <input type="submit" name="Submit" class="button1">
+                              </form>
+                              <span id="msg"></span>
+                         </div>
+                    </div>
+               </div>
+               <div class="copyright">
+                    <p>Copyright © Vamshi.</p>
+               </div>
+          </div>
+          <script>
+
+               var tablinks = document.getElementsByClassName("tab-links");
+               var tabcontents = document.getElementsByClassName("tab-contents");
+               function opentab(tabname) {
+                    for(tablink of tablinks) {
+                         tablink.classList.remove("active-link");
+                    }
+                    for(tabcontent of tabcontents) {
+                         tabcontent.classList.remove("active-tab");
+                    }
+                    event.currentTarget.classList.add("active-link");
+                    document.getElementById(tabname).classList.add("active-tab");
+               }
+
+          </script>
+          <script>
+
+               var sidemenu = document.getElementById("#sidemenu");
+               function openmenu() {
+                    sidemenu.style.right = "0";
+               }
+               function closemenu() {
+                    sidemenu.style.right = "-200px"; 
+               }
+
+          </script>
+          <script>
+
+               const scriptURL = 'https://script.google.com/macros/s/AKfycbzcjlHR8JJcaQBvDpPoIkn3SecPSbwkEWnDxvoeXhBkqYSSXPNxGQhIAxg-G43Q06OPrg/exec';
+               const form = document.forms['submit-to-google-sheet']
+               const msg = document.getElementById("msg")
+             
+               form.addEventListener('submit', e => {
+                 e.preventDefault()
+                 fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                   .then(response => {
+                    msg.innerHTML = "Message sent succesfully"
+                    setTimeout(function() {
+                         msg.innerHTML = ""
+                    }, 5000)
+                    form.reset()
+                   })
+                   .catch(error => console.error('Error!', error.message))
+               })
+               
+             </script>
+     </body>
+</html>
