@@ -1,1 +1,4 @@
-# A-Vamshi.github.io
+# Personal/Portfolio  website
+
+- A-Vamshi.github.io
+- vamshi.study
